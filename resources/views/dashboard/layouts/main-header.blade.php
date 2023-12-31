@@ -263,12 +263,17 @@
 									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
 									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
-									<form method="POST" action="{{ route('logout') }}">
-										@csrf
-												<a class="dropdown-item" href="route('logout')"
-												onclick="event.preventDefault();
-															this.closest('form').submit();"><i class="bx bx-log-out"></i>تسجيل الخروج</a>
-									</form>
+									
+									@if(auth('web')->check())
+                            <form method="POST" action="{{ route('logout.user') }}">
+                                @else
+                               <form method="POST" action="{{ route('logout.admin') }}">
+												                                     @endif
+                                                                        @csrf
+                                                                        <a class="dropdown-item" href="#"
+                                                                           onclick="event.preventDefault();
+                                        this.closest('form').submit();"><i class="bx bx-log-out"></i>تسجيل الخروج</a>
+                                                                    </form>
 								</div>
 							</div>
 							<div class="dropdown main-header-message right-toggle">

@@ -1,7 +1,8 @@
 <?php
-
-use App\Http\Controllers\dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dashboard\DashboardController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,35 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/dashboard/admin',[DashboardController::class,'index']);
 
-Route::get('/dashboard/user', function () {
-    return view('dashboard.user.index');
-})->middleware(['auth', 'verified'])->name('dashboard.user');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ 
+        
 
-require __DIR__.'/auth.php';
+Route::get('/dashboard/user', function () {
+            return view('dashboard.user.index');
+        })->middleware(['auth', 'verified'])->name('dashboard.user');
+        
+        
+        Route::get('/dashboard/admin', function () {
+            return view('dashboard.admin.index');
+        })->middleware(['auth:admin', 'verified'])->name('dashboard.admin');
+        
+        
+        
+        require __DIR__.'/auth.php';
+
+
+
+
+
+
+    });
+        
+        
+
+
+
+
