@@ -28,24 +28,36 @@
 							<div class="row">
 								<div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
 									<div class="card-sigin">
-										<div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('dashboard/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1></div>
+										<div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('dashboard/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">D.Sh. Hospital</h1></div>
 										<div class="card-sigin">
 											<div class="main-signup-header">
-												<h2>Welcome back!</h2>
+												<h2>{{ __('Dashboard/login_trans.Welcome' )}}</h2>
+
+											{{-- //handle errors message --}}
+												@if ($errors->any())
+												<div class="alert alert-danger">
+													<ul>
+														@foreach ($errors->all() as $error)
+															<li>{{ $error }}</li>
+														@endforeach
+													</ul>
+												</div>
+											@endif
+
 
 									<div class="form-group">
-										<label for="exampleFormControlSelect1">تسجيل الدخول</label>
+										<label for="exampleFormControlSelect1"> {{__('Dashboard/login_trans.select_entery')}}</label>
 										<select class="form-control" id="sectionChooser">
 										
-										<option value="" selected disabled> اختر نوع التسجيل</option>
-										<option value="user">الدخول طالب</option>
-										<option value="admin">الدخول أدمن</option>
+										<option value="" selected disabled>{{ __('Dashboard/login_trans.choose_list') }}</option>
+										<option value="user">{{__('Dashboard/login_trans.user')}} </option>
+										<option value="admin">{{__('Dashboard/login_trans.admin')}}</option>
 
 										</select>
 									</div>
 
 									<div class="loginform" id="user">
-												<h5 class="font-weight-semibold mb-4">تسجيل الدخول طالب</h5>
+												<h5 class="font-weight-semibold mb-4">{{__('Dashboard/login_trans.user')}}</h5>
 												
 										      <form method="POST" action="{{ route('login.user') }}">
 											@csrf
@@ -70,7 +82,7 @@
 											
 
 												<div class="loginform" id="admin">
-												<h5 class="font-weight-semibold mb-4">تسجيل الدخول ادمن</h5>
+												<h5 class="font-weight-semibold mb-4">{{__('Dashboard/login_trans.admin')}}</h5>
 												
 										      <form method="POST" action="{{ route('login.admin') }}">
 											@csrf
@@ -81,7 +93,7 @@
 														<label>Password</label> <input class="form-control" placeholder="Enter your password" type="password"
 														name="password"
 														required autocomplete="current-password">
-													</div><button type="submit" class="btn btn-main-primary btn-block">Sign In</button>
+													</div><button type="submit" class="btn btn-main-primary btn-block">{{__('Dashboard/login_trans.sign_in')}}</button>
 													<div class="row row-xs">
 														<div class="col-sm-6">
 															<button class="btn btn-block"><i class="fab fa-facebook-f"></i> Signup with Facebook</button>

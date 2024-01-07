@@ -1,5 +1,5 @@
 <!-- Title -->
-<title> Valex -  Premium dashboard ui bootstrap rwd admin html5 template </title>
+<title> Dar El-Shefa Hospital -  Premium dashboard ui bootstrap rwd admin html5 template </title>
 
 @yield('css')
 
