@@ -35,7 +35,7 @@ Route::get('/dashboard/user', function () {
         
 
         Route::middleware(['auth:admin'])->group(function () {
-     Route::resource('sections', SectionController::class);
+     Route::resource('Sections', SectionController::class);
           
 });
 

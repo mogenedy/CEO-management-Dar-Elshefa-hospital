@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Interfaces\Sections\SectionRepositoryInterface;
 
 class SectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    private $Sections;
+  
+   public function __construct(SectionRepositoryInterface $Sections)
+   {
+       $this->Sections = $Sections;
+   }
+   //call the index function from SectionRepositoryInterface
     public function index()
     {
-        return "hello";
+        return $this->Sections->index();
     }
 
     /**
