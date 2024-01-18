@@ -22,20 +22,14 @@ class SectionController extends Controller
         return $this->Sections->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        return $this->Sections->store($request);
     }
 
     /**
@@ -57,9 +51,9 @@ class SectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        return $this->Sections->update($request, $id);
     }
 
     /**
